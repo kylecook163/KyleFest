@@ -1,65 +1,402 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KyleFest Privacy Policy</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
+    :root {
+      --bg-1: #0a0a12;
+      --bg-2: #121426;
+      --bg-3: #1b1331;
+      --card: rgba(255,255,255,0.10);
+      --card-border: rgba(255,255,255,0.18);
+      --text: rgba(255,255,255,0.96);
+      --muted: rgba(255,255,255,0.72);
+      --accent-1: #8b5cf6;
+      --accent-2: #ec4899;
+      --accent-3: #22d3ee;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.32), transparent 28%),
+        radial-gradient(circle at top right, rgba(34,211,238,0.20), transparent 24%),
+        radial-gradient(circle at bottom center, rgba(236,72,153,0.20), transparent 32%),
+        linear-gradient(160deg, var(--bg-1) 0%, var(--bg-2) 45%, var(--bg-3) 100%);
+      background-attachment: fixed;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+        repeating-linear-gradient(
+          0deg,
+          transparent 0,
+          transparent 2px,
+          rgba(255,255,255,0.015) 3px
+        );
+      opacity: 0.35;
+    }
+
+    .wrap {
+      width: min(980px, calc(100% - 28px));
+      margin: 24px auto 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      padding: 28px 24px 22px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.06));
+      border: 1px solid rgba(255,255,255,0.16);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(236,72,153,0.30), transparent 62%);
+      filter: blur(8px);
+    }
+
+    .topbar {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+
+    .logo {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+      box-shadow: 0 0 18px rgba(236,72,153,0.55);
+    }
+
+    h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      max-width: 720px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
       line-height: 1.6;
     }
-    h1, h2 {
-      margin-top: 24px;
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px) saturate(140%);
+      -webkit-backdrop-filter: blur(20px) saturate(140%);
+    }
+
+    .main {
+      padding: 12px;
+    }
+
+    .section {
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .section + .section {
+      margin-top: 12px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section p, .section li {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 0.98rem;
+    }
+
+    .section ul {
+      margin: 8px 0 0 0;
+      padding-left: 20px;
+    }
+
+    .sidebar {
+      padding: 12px;
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .mini {
+      padding: 18px;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini h3 {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .mini p, .mini li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.93rem;
+    }
+
+    .mini ul {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+
+    .accent-card {
+      background:
+        linear-gradient(135deg, rgba(139,92,246,0.22), rgba(236,72,153,0.16)),
+        rgba(255,255,255,0.05);
+    }
+
+    a {
+      color: white;
+      text-underline-offset: 3px;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding: 18px 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: var(--muted);
+      font-size: 0.93rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: min(100% - 18px, 980px);
+        margin-top: 12px;
+      }
+
+      .hero {
+        border-radius: 26px;
+        padding: 22px 18px 18px;
+      }
+
+      .main, .sidebar {
+        padding: 10px;
+      }
+
+      .section, .mini {
+        padding: 16px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="topbar"><span class="logo"></span> KyleFest · Privacy Policy</div>
+      <h1>Your party. Your people. Your privacy.</h1>
+      <p class="subtitle">
+        KyleFest is built for local, in-person experiences. Most activity happens directly between devices in the same party session, not through a public social network.
+      </p>
+      <div class="meta-row">
+        <div class="pill">Last updated: March 2026</div>
+        <div class="pill">Intended for 18+</div>
+        <div class="pill">Local-first experience</div>
+      </div>
+    </section>
 
-<h1>KyleFest Privacy Policy</h1>
+    <div class="grid">
+      <main class="card main">
+        <section class="section">
+          <h2>1. Information We Collect</h2>
+          <p>KyleFest may collect the following information to make the app work as intended:</p>
+          <ul>
+            <li><strong>Account information:</strong> email address, display name, and optional profile photo.</li>
+            <li><strong>User content:</strong> chat messages, direct messages, photos, videos, polls, bets, and game activity shared within a party.</li>
+            <li><strong>App data:</strong> user identifiers, achievements, stats, party/session activity, and in-app progress.</li>
+          </ul>
+        </section>
 
-<p><strong>Last Updated: March 2026</strong></p>
+        <section class="section">
+          <h2>2. How We Use Your Information</h2>
+          <ul>
+            <li>Create and manage your account</li>
+            <li>Enable messaging, party features, and local group interactions</li>
+            <li>Display shared media and game activity to party members</li>
+            <li>Maintain app features, preferences, and user progress</li>
+            <li>Improve reliability and core app functionality</li>
+          </ul>
+        </section>
 
-<p>KyleFest (“we”, “our”, or “the app”) is a locally-based social app designed for use between friends and groups in shared environments. Your privacy is important to us.</p>
+        <section class="section">
+          <h2>3. Local Networking and Data Sharing</h2>
+          <p>KyleFest is designed primarily around local connections, such as Wi-Fi or nearby device communication.</p>
+          <ul>
+            <li>Most party interactions happen directly between devices in the same session.</li>
+            <li>Shared content is intended to be visible only to users participating in that party.</li>
+            <li>KyleFest does not operate as a public feed or open social platform.</li>
+          </ul>
+        </section>
 
-<h2>1. Information We Collect</h2>
-<p><strong>Account Information</strong><br>
-Email address, display name, and optional profile photo.</p>
+        <section class="section">
+          <h2>4. Data Storage</h2>
+          <ul>
+            <li>Some account-related data, such as authentication and profile details, may be stored using service providers needed to operate the app.</li>
+            <li>Some information is stored locally on your device.</li>
+            <li>Party content may be exchanged locally and may not be permanently stored on external servers.</li>
+          </ul>
+        </section>
 
-<p><strong>User Content</strong><br>
-Messages, photos, videos, and game activity within parties.</p>
+        <section class="section">
+          <h2>5. Data Sharing</h2>
+          <p>We do not sell your personal information.</p>
+          <ul>
+            <li>Data may be shared with other users only as needed for the party session and app functionality.</li>
+            <li>Data may also be shared with service providers that help run core features such as account services.</li>
+          </ul>
+        </section>
 
-<p><strong>App Data</strong><br>
-User identifiers, session activity, and in-app progress.</p>
+        <section class="section">
+          <h2>6. User Controls</h2>
+          <ul>
+            <li>Update your profile information</li>
+            <li>Leave parties at any time</li>
+            <li>Block or hide other users locally within the app experience</li>
+          </ul>
+        </section>
 
-<h2>2. How We Use Your Information</h2>
-<p>To provide core app functionality including accounts, messaging, party interactions, and improving user experience.</p>
+        <section class="section">
+          <h2>7. Children’s Privacy</h2>
+          <p>KyleFest is intended for users 18 years of age or older. We do not knowingly collect personal information from children.</p>
+        </section>
 
-<h2>3. Local Networking</h2>
-<p>Most interactions occur directly between devices using local connections. Data is only visible to users within the same party.</p>
+        <section class="section">
+          <h2>8. Security</h2>
+          <p>We take reasonable steps to protect information used by the app. No method of storage or transmission is completely secure.</p>
+        </section>
 
-<h2>4. Data Storage</h2>
-<p>Account data may be stored using secure third-party services. Some data is stored locally on your device.</p>
+        <section class="section">
+          <h2>9. Changes to This Policy</h2>
+          <p>We may update this Privacy Policy from time to time. Continued use of KyleFest after updates means you accept the revised policy.</p>
+        </section>
 
-<h2>5. Data Sharing</h2>
-<p>We do not sell your data. Data is only shared with other users in your party or required service providers.</p>
+        <section class="section">
+          <h2>10. Contact</h2>
+          <p>Questions about this policy can be sent to <a href="mailto:support@kylefest.app">support@kylefest.app</a>.</p>
+        </section>
+      </main>
 
-<h2>6. User Controls</h2>
-<p>Users can update profiles, leave parties, and block or hide others.</p>
+      <aside class="card sidebar">
+        <section class="mini accent-card">
+          <h3>Quick Summary</h3>
+          <p>KyleFest is local-first. Most party content stays within the party experience and is shared with the people in that session.</p>
+        </section>
 
-<h2>7. Children’s Privacy</h2>
-<p>This app is intended for users 18+.</p>
+        <section class="mini">
+          <h3>What we collect</h3>
+          <ul>
+            <li>Email and profile info</li>
+            <li>Messages and shared media</li>
+            <li>Party stats and app activity</li>
+          </ul>
+        </section>
 
-<h2>8. Security</h2>
-<p>We take reasonable steps to protect your information.</p>
+        <section class="mini">
+          <h3>What we do not do</h3>
+          <ul>
+            <li>We do not sell your personal data</li>
+            <li>We do not run a public global feed</li>
+            <li>We do not use your data for tracking</li>
+          </ul>
+        </section>
 
-<h2>9. Changes</h2>
-<p>We may update this policy over time.</p>
+        <section class="mini">
+          <h3>Good to know</h3>
+          <p>Your App Store privacy answers, in-app disclosures, and this page should all match the exact version you submit for review.</p>
+        </section>
+      </aside>
+    </div>
 
-<h2>10. Contact</h2>
+    <footer>
+      © 2026 KyleFest. This page is intended for App Store privacy disclosure and user reference.
+    </footer>
+  </div>
+</body>
+</html>
+
 <p>Email: support@kylefest.app</p>
 
 </body>
