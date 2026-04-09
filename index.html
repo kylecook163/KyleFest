@@ -881,9 +881,9 @@
         <div class="privacy-grid">
           <div class="policy-card glass">
             <h3>Your party. Your people. Your privacy.</h3>
-            <p>KyleFest is a local-first social app designed for use between friends and groups in shared environments. Most activity is built around party sessions and nearby interactions rather than a public feed.</p>
+            <p>In short: KyleFest does not sell your data, does not serve ads, and does not share your information with third-party advertisers. Most of your data stays on your device. The only data stored on our servers is your account profile if you create one. Party activity, messages, and game data are not persisted after you leave.</p>
             <div class="badge-row">
-              <span class="badge">Last updated: March 2026</span>
+              <span class="badge">Last updated: April 2026</span>
               <span class="badge">Intended for 18+</span>
               <span class="badge">No tracking</span>
             </div>
@@ -891,78 +891,120 @@
 
           <div class="policy-stack">
             <article class="policy-card glass">
-              <h4>1. Information we collect</h4>
+              <h4>1. What we collect</h4>
               <ul>
-                <li>Account information such as email address, display name, and optional profile photo</li>
-                <li>User content such as messages, direct messages, photos, videos, polls, bets, and game activity</li>
-                <li>App data such as user identifiers, party activity, achievements, stats, and in-app progress</li>
+                <li>Account info: if you create an account, we store your email address, display name, and a hashed password via Supabase. If you use Sign in with Apple, we receive the identity token Apple provides.</li>
+                <li>Profile data: your display name and profile photo are stored locally on your device. If you have an account, your display name is also stored so it can sync across devices.</li>
+                <li>Lifetime stats: wins, losses, Elo rating, CookPoints, and similar gameplay statistics may be stored locally and may sync through legacy Apple sign-in backup flows.</li>
+                <li>Moderation preferences: mute, hide, and block relationships are stored locally on your device.</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>2. How we use your information</h4>
+              <h4>2. Party and social data</h4>
               <ul>
-                <li>To create and manage your account</li>
-                <li>To enable messaging, shared media, and party features</li>
-                <li>To display relevant activity inside your party session</li>
-                <li>To maintain app functionality and improve reliability</li>
+                <li>When you join a party, your display name, avatar, and profile are shared with other party members over the local network.</li>
+                <li>Chat messages, game sessions, bets, polls, and shared photos or videos are transmitted in real time between devices on the same network.</li>
+                <li>This party data lives in memory while the app is running and is not persisted to a server after you leave the party.</li>
+                <li>Direct messages between party members use end-to-end encryption, and the encryption keys stay on your device.</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>3. Local networking and session sharing</h4>
+              <h4>3. How we use your data</h4>
               <ul>
-                <li>Most interactions are intended to happen directly between devices in the same party experience</li>
-                <li>Shared content is meant to be visible only to users participating in that party</li>
-                <li>KyleFest is not intended to function as a public social network or open global feed</li>
+                <li>To identify you in parties and sync your profile across devices</li>
+                <li>To track achievements, leaderboards, Elo ratings, and other gameplay features</li>
+                <li>To apply your local moderation settings like mute, hide, and block</li>
+                <li>We do not sell your data, serve ads, or share your information with third-party advertisers</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>4. Data storage</h4>
+              <h4>4. Where data is stored</h4>
               <ul>
-                <li>Some account-related data may be stored using service providers required to operate the app</li>
-                <li>Some information may also be stored locally on your device</li>
-                <li>Party content may be exchanged locally and may not be permanently stored on external servers</li>
+                <li>On your device: profile info, avatar, moderation preferences, drink preferences, and notification settings</li>
+                <li>In iOS Keychain: encryption keys and secure credential-related items</li>
+                <li>In Supabase: if you create an account, your email, display name, and authentication credentials</li>
+                <li>In memory only: chat, game state, bets, party rosters, and shared media during a live party session</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>5. Data sharing</h4>
+              <h4>5. Account deletion</h4>
               <ul>
-                <li>We do not sell personal information</li>
-                <li>Data may be shared with other users only as needed for the party experience</li>
-                <li>Data may also be shared with service providers that support core app functions such as authentication</li>
+                <li>You can request account deletion from Settings → Data &amp; Account → Delete Account.</li>
+                <li>Local data like your profile, avatar, and moderation preferences is cleared from your device when you delete your account.</li>
+                <li>Server-side deletion of your Supabase profile and authentication record is processed as part of the deletion flow.</li>
+                <li>In-memory party data is not persisted after you leave a party, so there is nothing additional to delete for session-only data.</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>6. User controls</h4>
+              <h4>6. Data shared with other users</h4>
               <ul>
-                <li>Users can update profile information</li>
-                <li>Users can leave parties at any time</li>
-                <li>Users can block or hide other users locally within the app experience</li>
+                <li>While in a party, other members can see your display name, profile photo, game activity, chat messages, bets, poll votes, and shared media.</li>
+                <li>Your email address is never shared with other users.</li>
+                <li>Moderation actions you take are private to your device and are not visible to the person you moderated.</li>
               </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>7. Children’s privacy</h4>
-              <p>KyleFest is intended for users 18 years of age or older. We do not knowingly collect personal information from children.</p>
+              <h4>7. Third-party services</h4>
+              <ul>
+                <li>Supabase is used for account authentication and profile storage.</li>
+                <li>Apple services may be used for Sign in with Apple and legacy iCloud or CloudKit backup flows.</li>
+                <li>We do not integrate analytics, advertising, or tracking SDKs.</li>
+              </ul>
             </article>
 
             <article class="policy-card glass">
               <h4>8. Security</h4>
-              <p>We take reasonable steps to protect information used by the app, but no method of storage or transmission is completely secure.</p>
+              <ul>
+                <li>Peer-to-peer connections use encrypted transport.</li>
+                <li>Direct messages use end-to-end encryption and device-generated keys stored securely on your device.</li>
+                <li>We do not store plaintext passwords.</li>
+              </ul>
             </article>
 
             <article class="policy-card glass">
-              <h4>9. Changes to this policy</h4>
-              <p>We may update this Privacy Policy from time to time. Continued use of KyleFest after changes means you accept the revised policy.</p>
+              <h4>9. Voice calling</h4>
+              <p>Voice calls occur only between devices on the same local Wi-Fi network during an active party session. Voice data is transmitted peer-to-peer and is not routed through a centralized server. Calls are not recorded, stored, or persisted by the app or our servers.</p>
+            </article>
+
+            <article class="policy-card glass">
+              <h4>10. Data retention and deletion</h4>
+              <ul>
+                <li>Party activity is held in memory during a session and is automatically deleted when you leave the party or close the app.</li>
+                <li>Local profile data, moderation preferences, and game stats are retained until you delete your account or uninstall the app.</li>
+                <li>Supabase account data is deleted within 30 days of an account deletion request.</li>
+              </ul>
+            </article>
+
+            <article class="policy-card glass">
+              <h4>11. Data export</h4>
+              <p>You can export your account data from Settings → Data &amp; Account → Export Data. The export contains your profile, stats, and preferences. It does not include in-memory party data because that session data is ephemeral.</p>
+            </article>
+
+            <article class="policy-card glass">
+              <h4>12. No tracking or analytics</h4>
+              <ul>
+                <li>KyleFest does not use analytics, tracking, or behavioral monitoring SDKs.</li>
+                <li>We do not track your behavior, build advertising profiles, or sell your data.</li>
+              </ul>
+            </article>
+
+            <article class="policy-card glass">
+              <h4>13. Your rights</h4>
+              <ul>
+                <li>You can access, export, and delete your data at any time through Settings.</li>
+                <li>For privacy-related requests, including access, correction, or deletion, contact us directly.</li>
+              </ul>
             </article>
 
             <article class="policy-card glass" id="contact">
-              <h4>10. Contact</h4>
-              <p>Questions about this policy or the app can be sent to <a href="mailto:support@kylefest.app"><strong>support@kylefest.app</strong></a>.</p>
+              <h4>14. Contact</h4>
+              <p>Questions about this policy or the app can be sent to <a href="mailto:KyleFestApp@gmail.com"><strong>KyleFestApp@gmail.com</strong></a>.</p>
             </article>
           </div>
         </div>
@@ -1017,7 +1059,7 @@
         <div class="cards-2">
           <article class="panel glass">
             <h3>Contact card</h3>
-            <p><strong>Email:</strong> <a href="mailto:support@kylefest.app">support@kylefest.app</a></p>
+            <p><strong>Email:</strong> <a href="mailto:KyleFestApp@gmail.com">KyleFestApp@gmail.com</a></p>
             <p><strong>App:</strong> KyleFest</p>
             <p><strong>Focus:</strong> Local-first party communication, games, media, and group coordination</p>
             <p><strong>Support topics:</strong> App questions, privacy questions, account questions, and review-related contact</p>
