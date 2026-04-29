@@ -7,75 +7,61 @@
   <meta name="description" content="KyleFest is a local-first party app for chats, games, photos, and keeping your group connected in one place." />
   <style>
     :root {
-      --bg-1: #070913;
-      --bg-2: #12162a;
-      --bg-3: #21143b;
-      --surface: rgba(255,255,255,0.08);
-      --surface-strong: rgba(255,255,255,0.12);
-      --border: rgba(255,255,255,0.14);
-      --text: rgba(255,255,255,0.97);
-      --muted: rgba(255,255,255,0.72);
-      --muted-2: rgba(255,255,255,0.56);
-      --purple: #8b5cf6;
-      --pink: #ec4899;
-      --cyan: #22d3ee;
-      --green: #34d399;
-      --yellow: #fbbf24;
-      --shadow: 0 24px 70px rgba(0,0,0,0.34);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
-      --max: 1160px;
+      --black: #1d1d1f;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --muted-2: #86868b;
+      --bg: #ffffff;
+      --bg-alt: #f5f5f7;
+      --bg-dark: #000000;
+      --border: rgba(0,0,0,0.08);
+      --border-strong: rgba(0,0,0,0.16);
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 980px;
+      --max-wide: 1240px;
+      --shadow: 0 6px 30px rgba(0,0,0,0.06);
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
     body {
       margin: 0;
       color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(139,92,246,0.28), transparent 26%),
-        radial-gradient(circle at top right, rgba(34,211,238,0.18), transparent 22%),
-        radial-gradient(circle at bottom center, rgba(236,72,153,0.22), transparent 34%),
-        linear-gradient(160deg, var(--bg-1), var(--bg-2) 48%, var(--bg-3));
-      background-attachment: fixed;
+      font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      font-weight: 400;
+      letter-spacing: -0.01em;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.28;
-      background:
-        repeating-linear-gradient(0deg, transparent 0 2px, rgba(255,255,255,0.02) 3px),
-        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    }
-
-    a { color: inherit; text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
     img { max-width: 100%; display: block; }
 
     .container {
-      width: min(var(--max), calc(100% - 28px));
+      width: min(var(--max), calc(100% - 40px));
       margin: 0 auto;
       position: relative;
-      z-index: 1;
     }
 
-    .glass {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(22px) saturate(140%);
-      -webkit-backdrop-filter: blur(22px) saturate(140%);
-      box-shadow: var(--shadow);
+    .container-wide {
+      width: min(var(--max-wide), calc(100% - 40px));
+      margin: 0 auto;
+      position: relative;
     }
 
+    /* ---------- Global nav ---------- */
     header {
       position: sticky;
-      top: 12px;
-      z-index: 40;
-      padding-top: 12px;
+      top: 0;
+      z-index: 50;
+      background: rgba(251, 251, 253, 0.8);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
 
     .nav {
@@ -83,805 +69,1484 @@
       align-items: center;
       justify-content: space-between;
       gap: 14px;
-      padding: 14px 18px;
-      border-radius: 999px;
+      height: 48px;
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: 0 22px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--black);
     }
 
     .brand-mark {
-      width: 14px;
-      height: 14px;
+      width: 10px;
+      height: 10px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--purple), var(--pink));
-      box-shadow: 0 0 22px rgba(236,72,153,0.55);
+      background: linear-gradient(135deg, #ff5e7e, #b06bff 50%, #5ac8fa);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 4px;
       flex-wrap: wrap;
     }
 
-    .nav-links a, .button {
-      padding: 10px 14px;
+    .nav-links a {
+      padding: 6px 12px;
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 400;
+      opacity: 0.88;
       border-radius: 999px;
-      color: var(--muted);
-      transition: 0.2s ease;
-      font-size: 14px;
     }
 
-    .nav-links a:hover, .button:hover {
-      background: rgba(255,255,255,0.08);
-      color: white;
+    .nav-links a:hover {
+      opacity: 1;
+      text-decoration: none;
     }
 
-    .button.primary {
-      color: white;
-      background: linear-gradient(135deg, rgba(139,92,246,0.85), rgba(236,72,153,0.8));
-      border: 1px solid rgba(255,255,255,0.16);
+    .nav-links a.cta {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 500;
+      padding: 6px 14px;
     }
 
-    .hero {
-      padding: 34px 0 22px;
-    }
+    .nav-links a.cta:hover { background: var(--accent-hover); }
 
-    .hero-shell {
-      border-radius: 36px;
-      overflow: hidden;
-      padding: 22px;
+    /* ---------- Sub-nav (sticky product bar like Apple) ---------- */
+    .subnav {
+      position: sticky;
+      top: 48px;
+      z-index: 49;
+      background: rgba(245, 245, 247, 0.92);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
     }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .hero-copy, .hero-visual {
-      border-radius: 28px;
-      padding: 24px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.10);
-    }
-
-    .eyebrow {
-      display: inline-flex;
+    .subnav-inner {
+      display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
+      justify-content: space-between;
+      height: 52px;
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+    .subnav-title {
+      font-size: 21px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--black);
+    }
+    .subnav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .subnav-links a {
+      color: var(--text);
+      font-size: 12px;
+      opacity: 0.86;
+    }
+    .subnav-links a:hover { opacity: 1; text-decoration: none; }
+    .subnav-links a.pill {
+      background: var(--accent);
+      color: #fff;
+      padding: 5px 12px;
       border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 13px;
+      font-weight: 500;
+    }
+    .subnav-links a.pill:hover { background: var(--accent-hover); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      text-align: center;
+      padding: 48px 0 0;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
     }
 
-    h1, h2, h3 {
-      letter-spacing: -0.04em;
-      margin: 0;
+    .eyebrow-mini {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
     }
 
-    h1 {
-      margin-top: 18px;
-      font-size: clamp(2.6rem, 7vw, 5.3rem);
+    h1, h2, h3, h4 { margin: 0; color: var(--black); }
+
+    .hero h1 {
+      font-size: clamp(56px, 11vw, 140px);
+      font-weight: 600;
+      letter-spacing: -0.045em;
       line-height: 0.95;
-      max-width: 10ch;
+      margin: 0;
+      background: linear-gradient(120deg, #ff5e7e 0%, #b06bff 25%, #5ac8fa 50%, #34d399 75%, #ff5e7e 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding: 0 10px 8px;
+      animation: gradientShift 12s ease-in-out infinite;
     }
 
-    .lead {
-      margin: 18px 0 0;
-      max-width: 56ch;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 1.05rem;
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero-tag {
+      font-size: clamp(22px, 2.6vw, 32px);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--black);
+      margin: 18px auto 0;
+      max-width: 22ch;
+      line-height: 1.15;
     }
 
     .hero-actions {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 12px;
-      margin-top: 22px;
-      align-items: center;
-      justify-content: flex-start;
-    }
-
-    @media (max-width: 780px) {
-      .hero-actions {
-        flex-wrap: wrap;
-      }
-    }
-
-    .hero-actions .button {
       display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      height: 44px;
-    }
-
-    .app-store-button {
-      min-width: 180px;
-      height: 44px;
+      gap: 24px;
+      margin-top: 26px;
+      flex-wrap: wrap;
       justify-content: center;
     }
 
-    .app-store-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      padding: 11px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.07);
-      color: white;
-      cursor: default;
-      user-select: none;
+    .hero-actions a {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--accent);
+      letter-spacing: -0.01em;
     }
+    .hero-actions a:hover { text-decoration: underline; }
+    .hero-actions a::after { content: " ›"; }
 
-    .app-store-badge {
-      width: 28px;
-      height: 28px;
-      border-radius: 9px;
-      display: inline-grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .app-store-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.05;
-    }
-
-    .app-store-text small {
-      color: var(--muted-2);
-      font-size: 11px;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
-    }
-
-    .app-store-text strong {
-      font-size: 14px;
-      letter-spacing: -0.02em;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.45rem;
-      letter-spacing: -0.03em;
-    }
-
-    .stat span {
-      color: var(--muted-2);
-      font-size: 0.92rem;
-    }
-
-    .phone {
-      max-width: 380px;
-      margin: 0 auto;
-      padding: 14px;
-      border-radius: 34px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.04));
-      border: 1px solid rgba(255,255,255,0.16);
-    }
-
-    .phone-screen {
-      border-radius: 26px;
-      overflow: hidden;
-      min-height: 640px;
-      padding: 18px;
-      background:
-        radial-gradient(circle at top left, rgba(139,92,246,0.26), transparent 26%),
-        radial-gradient(circle at bottom right, rgba(236,72,153,0.24), transparent 30%),
-        linear-gradient(180deg, #111529, #18142f 55%, #1d1435);
+    .hero-visual-wrap {
+      margin: 36px auto 0;
+      max-width: 880px;
+      padding: 0 20px 60px;
       position: relative;
     }
 
-    .status {
+    .phone-stage {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: rgba(255,255,255,0.78);
-      font-size: 13px;
-      margin-bottom: 18px;
-    }
-
-    .home-card, .row-card, .tiny-card, .footer-bar {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 22px;
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-    }
-
-    .home-card {
-      padding: 18px;
-      margin-bottom: 12px;
-    }
-
-    .party-line {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-
-    .avatar {
-      width: 54px;
-      height: 54px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(34,211,238,0.8), rgba(139,92,246,0.9));
-    }
-
-    .rows {
-      display: grid;
-      gap: 10px;
-    }
-
-    .row-card {
-      padding: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .row-card small, .tiny-card small {
-      color: var(--muted-2);
-      display: block;
-      margin-top: 3px;
-    }
-
-    .tiny-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .tiny-card {
-      padding: 14px;
-      min-height: 88px;
-    }
-
-    .footer-bar {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 8px;
-      padding: 10px;
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-    }
-
-    .tab {
-      text-align: center;
-      color: rgba(255,255,255,0.72);
-      font-size: 12px;
-      padding: 10px 4px;
-      border-radius: 16px;
-    }
-
-    .tab.active {
-      background: rgba(255,255,255,0.10);
-      color: white;
-    }
-
-    .preview-dot {
-      appearance: none;
-      border: 0;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.35);
-      cursor: pointer;
-      transition: 0.2s ease;
-      margin: 0 4px;
-    }
-
-    .preview-dot:hover {
-      background: rgba(255,255,255,0.7);
-    }
-
-    .preview-dot.active {
-      background: white;
-      transform: scale(1.2);
-    }
-
-    .preview-container {
-      display: inline-flex;
-      align-items: center;
       justify-content: center;
-      padding: 8px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.35);
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(14px);
+      align-items: flex-end;
+      gap: 0;
+      position: relative;
+      perspective: 1400px;
     }
 
-    .preview-dot:hover {
-      color: white;
-      background: rgba(255,255,255,0.08);
+    .phone {
+      flex: 0 0 auto;
+      width: clamp(180px, 22vw, 240px);
+      padding: 8px;
+      border-radius: 40px;
+      background: linear-gradient(180deg, #2c2c2e, #1c1c1e);
+      box-shadow:
+        0 30px 70px rgba(0,0,0,0.22),
+        0 6px 16px rgba(0,0,0,0.10);
+      position: relative;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .preview-dot.active {
-      color: white;
-      background: rgba(255,255,255,0.12);
+    .phone-screen {
+      border-radius: 32px;
+      overflow: hidden;
+      aspect-ratio: 9 / 19.5;
+      background: #000;
+      position: relative;
     }
 
+    .phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Fan layout: side phones rotated and pushed under the center phone */
+    .phone.left {
+      transform: translateX(40px) translateY(20px) rotate(-8deg);
+      z-index: 1;
+      animation: phoneFloatLeft 7s ease-in-out infinite;
+    }
+    .phone.center {
+      transform: translateY(-12px);
+      z-index: 3;
+      animation: phoneFloatCenter 6s ease-in-out infinite;
+      box-shadow:
+        0 50px 90px rgba(0,0,0,0.28),
+        0 8px 20px rgba(0,0,0,0.12);
+    }
+    .phone.right {
+      transform: translateX(-40px) translateY(20px) rotate(8deg);
+      z-index: 1;
+      animation: phoneFloatRight 7.5s ease-in-out infinite;
+    }
+
+    @keyframes phoneFloatCenter {
+      0%, 100% { transform: translateY(-12px); }
+      50%      { transform: translateY(-22px); }
+    }
+    @keyframes phoneFloatLeft {
+      0%, 100% { transform: translateX(40px) translateY(20px) rotate(-8deg); }
+      50%      { transform: translateX(40px) translateY(10px) rotate(-8deg); }
+    }
+    @keyframes phoneFloatRight {
+      0%, 100% { transform: translateX(-40px) translateY(20px) rotate(8deg); }
+      50%      { transform: translateX(-40px) translateY(10px) rotate(8deg); }
+    }
+
+    @media (max-width: 700px) {
+      .phone { width: clamp(120px, 26vw, 170px); }
+      .phone.left { transform: translateX(28px) translateY(16px) rotate(-7deg); }
+      .phone.right { transform: translateX(-28px) translateY(16px) rotate(7deg); }
+      @keyframes phoneFloatLeft {
+        0%, 100% { transform: translateX(28px) translateY(16px) rotate(-7deg); }
+        50%      { transform: translateX(28px) translateY(8px)  rotate(-7deg); }
+      }
+      @keyframes phoneFloatRight {
+        0%, 100% { transform: translateX(-28px) translateY(16px) rotate(7deg); }
+        50%      { transform: translateX(-28px) translateY(8px)  rotate(7deg); }
+      }
+    }
+
+    @media (max-width: 420px) {
+      .phone { width: clamp(96px, 30vw, 130px); border-radius: 30px; padding: 6px; }
+      .phone-screen { border-radius: 24px; }
+      .phone.left { transform: translateX(22px) translateY(12px) rotate(-7deg); }
+      .phone.right { transform: translateX(-22px) translateY(12px) rotate(7deg); }
+      @keyframes phoneFloatLeft {
+        0%, 100% { transform: translateX(22px) translateY(12px) rotate(-7deg); }
+        50%      { transform: translateX(22px) translateY(6px)  rotate(-7deg); }
+      }
+      @keyframes phoneFloatRight {
+        0%, 100% { transform: translateX(-22px) translateY(12px) rotate(7deg); }
+        50%      { transform: translateX(-22px) translateY(6px)  rotate(7deg); }
+      }
+    }
+
+    /* ---------- Section system ---------- */
     section.block {
-      padding: 18px 0;
+      padding: 56px 0;
+      background: var(--bg);
     }
+
+    section.block.alt { background: var(--bg-alt); }
+
+    section.block.dark {
+      background: var(--bg-dark);
+      color: #f5f5f7;
+    }
+
+    section.block.dark h2,
+    section.block.dark h3,
+    section.block.dark h4 { color: #f5f5f7; }
+
+    section.block.dark p,
+    section.block.dark li { color: #a1a1a6; }
 
     .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      align-items: end;
-      margin-bottom: 16px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 36px;
+    }
+
+    .section-head .kicker {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 12px;
+      letter-spacing: -0.01em;
+    }
+
+    section.block.dark .section-head .kicker { color: #2997ff; }
+
+    .section-head h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
     }
 
     .section-head p {
-      margin: 8px 0 0;
+      margin: 22px auto 0;
+      font-size: clamp(18px, 1.6vw, 21px);
+      line-height: 1.5;
       color: var(--muted);
-      max-width: 58ch;
-      line-height: 1.7;
+      max-width: 64ch;
     }
 
-    .cards-3, .cards-4, .cards-2 {
+    section.block.dark .section-head p { color: #a1a1a6; }
+
+    /* ---------- Tile grid (Apple-style feature cards) ---------- */
+    .tiles {
       display: grid;
+      grid-template-columns: repeat(12, 1fr);
       gap: 14px;
     }
 
-    .cards-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .cards-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .cards-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-
-    .feature, .panel, .faq, .policy-card, .cta {
-      padding: 20px;
-      border-radius: 24px;
+    .tile {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 36px 32px;
+      grid-column: span 4;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    .feature h3, .panel h3, .faq h3, .policy-card h3 {
-      font-size: 1.15rem;
-      margin-bottom: 8px;
+    .tile:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.10);
     }
 
-    .feature p, .panel p, .faq p, .policy-card p, .cta p, li {
+    .tile-emoji {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .tile:hover .tile-emoji {
+      transform: scale(1.15) rotate(-4deg);
+    }
+
+    section.block.alt .tile { background: #fff; }
+    section.block.dark .tile { background: #1d1d1f; color: #f5f5f7; }
+    section.block.dark .tile h3 { color: #f5f5f7; }
+    section.block.dark .tile p, section.block.dark .tile li { color: #a1a1a6; }
+
+    .tile.span-3 { grid-column: span 3; }
+    .tile.span-6 { grid-column: span 6; }
+    .tile.span-8 { grid-column: span 8; }
+    .tile.span-12 { grid-column: span 12; }
+
+    .tile .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 10px;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    section.block.dark .tile .kicker { color: #2997ff; }
+
+    .tile h3 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0 0 12px;
+    }
+
+    .tile p {
+      font-size: 17px;
+      line-height: 1.5;
       color: var(--muted);
-      line-height: 1.68;
+      margin: 0 0 12px;
     }
 
-    .icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
+    .tile ul {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tile ul li {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+    .tile ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.45;
+    }
+
+    .tile-emoji {
+      font-size: 38px;
+      line-height: 1;
+      margin-bottom: 18px;
+      display: inline-block;
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition:
+        opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1 { transition-delay: 0.08s; }
+    .reveal.delay-2 { transition-delay: 0.16s; }
+    .reveal.delay-3 { transition-delay: 0.24s; }
+
+    /* Stagger tiles inside a grid */
+    .tiles .tile {
+      opacity: 0;
+      transform: translateY(36px);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tiles.in .tile {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .tiles.in .tile:nth-child(1)  { transition-delay: 0.00s, 0.00s, 0s; }
+    .tiles.in .tile:nth-child(2)  { transition-delay: 0.06s, 0.06s, 0s; }
+    .tiles.in .tile:nth-child(3)  { transition-delay: 0.12s, 0.12s, 0s; }
+    .tiles.in .tile:nth-child(4)  { transition-delay: 0.18s, 0.18s, 0s; }
+    .tiles.in .tile:nth-child(5)  { transition-delay: 0.24s, 0.24s, 0s; }
+    .tiles.in .tile:nth-child(6)  { transition-delay: 0.30s, 0.30s, 0s; }
+    .tiles.in .tile:nth-child(7)  { transition-delay: 0.36s, 0.36s, 0s; }
+    .tiles.in .tile:nth-child(8)  { transition-delay: 0.42s, 0.42s, 0s; }
+    .tiles.in .tile:nth-child(9)  { transition-delay: 0.48s, 0.48s, 0s; }
+    .tiles.in .tile:nth-child(n+10) { transition-delay: 0.54s, 0.54s, 0s; }
+
+    /* Hero entrance */
+    .hero .eyebrow-mini,
+    .hero h1,
+    .hero .hero-tag,
+    .hero .hero-actions,
+    .hero .hero-visual-wrap {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .hero h1 { animation-delay: 0.1s; }
+    .hero .hero-tag { animation-delay: 0.25s; }
+    .hero .hero-actions { animation-delay: 0.4s; }
+    .hero .hero-visual-wrap { animation-delay: 0.55s; }
+
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero h1 keeps its gradient animation; layer entrance via wrapper transform */
+    .hero h1 {
+      animation:
+        heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards,
+        gradientShift 12s ease-in-out 1s infinite;
+    }
+
+    /* Brand mark spin on hover */
+    .brand-mark {
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .brand:hover .brand-mark {
+      transform: rotate(180deg) scale(1.2);
+    }
+
+    /* Nav link underline */
+    .nav-links a:not(.cta),
+    .subnav-links a:not(.pill) {
+      position: relative;
+    }
+    .nav-links a:not(.cta)::after,
+    .subnav-links a:not(.pill)::after {
+      content: "";
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 2px;
+      height: 1px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .nav-links a:not(.cta):hover::after,
+    .subnav-links a:not(.pill):hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Pill / CTA hover */
+    .nav-links a.cta,
+    .subnav-links a.pill,
+    .hero-actions a {
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .nav-links a.cta:hover,
+    .subnav-links a.pill:hover {
+      transform: translateY(-1px);
+    }
+    .hero-actions a:hover {
+      transform: translateX(4px);
+    }
+
+    /* FAQ open animation */
+    details.faq-item p {
+      animation: fadeSlide 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .reveal, .tiles .tile { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ---------- Highlights slider (Apple-style) ---------- */
+    .slider-section {
+      position: relative;
+    }
+
+    .slider-head {
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 36px;
+    }
+
+    .slider-head h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    .slider-controls {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .slider-btn {
+      appearance: none;
+      border: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.06);
+      color: var(--black);
+      cursor: pointer;
       display: inline-grid;
       place-items: center;
-      margin-bottom: 14px;
-      font-weight: 700;
-      background: linear-gradient(135deg, rgba(139,92,246,0.26), rgba(34,211,238,0.18));
-      border: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+      font-size: 18px;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.12); }
+    .slider-btn:active { transform: scale(0.94); }
+    .slider-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .slider-btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
-    .feature ul, .policy-card ul {
-      margin: 10px 0 0;
+    .slider-viewport {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 4%, #000 96%, transparent 100%);
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 18px;
+      padding: 8px 22px 8px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      max-width: var(--max-wide);
+      margin: 0 auto;
+    }
+    .slider-track::-webkit-scrollbar { display: none; }
+
+    .slide {
+      flex: 0 0 auto;
+      width: clamp(260px, 26vw, 320px);
+      min-height: 320px;
+      border-radius: 28px;
+      padding: 28px;
+      background: var(--bg-alt);
+      scroll-snap-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide:hover {
+      transform: translateY(-4px);
+    }
+
+    .slide-emoji {
+      font-size: 56px;
+      line-height: 1;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .slide:hover .slide-emoji {
+      transform: scale(1.1) rotate(-4deg);
+    }
+
+    .slide-content .kicker {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+
+    .slide-content h3 {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin: 0 0 10px;
+    }
+
+    .slide-content p {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    /* Slide color variants */
+    .slide.dark { background: #1d1d1f; color: #f5f5f7; }
+    .slide.dark h3 { color: #f5f5f7; }
+    .slide.dark p { color: #a1a1a6; }
+    .slide.dark .kicker { color: #2997ff; }
+
+    .slide.pink   { background: linear-gradient(160deg, #ffe6ec, #ffd0e1); }
+    .slide.purple { background: linear-gradient(160deg, #ede4ff, #d9c8ff); }
+    .slide.blue   { background: linear-gradient(160deg, #dff3ff, #bfe1ff); }
+    .slide.green  { background: linear-gradient(160deg, #d8f6e3, #b6ecca); }
+    .slide.yellow { background: linear-gradient(160deg, #fff5cf, #ffe5a1); }
+    .slide.orange { background: linear-gradient(160deg, #ffe2cc, #ffc59e); }
+    .slide.midnight {
+      background: linear-gradient(160deg, #0a0e2a, #2a1452);
+      color: #f5f5f7;
+    }
+    .slide.midnight h3 { color: #f5f5f7; }
+    .slide.midnight p { color: #a1a1a6; }
+    .slide.midnight .kicker { color: #fa57c1; }
+
+    .slider-progress {
+      max-width: var(--max-wide);
+      margin: 28px auto 0;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .slider-progress-track {
+      flex: 1;
+      height: 3px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .slider-progress-bar {
+      height: 100%;
+      background: var(--black);
+      border-radius: 999px;
+      width: 18%;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: left center;
+    }
+
+    @media (max-width: 700px) {
+      .slider-viewport {
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+      .slide { min-height: 280px; padding: 24px; }
+      .slider-head { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ---------- Spotlight (full-width feature panel) ---------- */
+    .spotlight {
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    .spotlight-card {
+      border-radius: 36px;
+      padding: 72px 56px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .spotlight-card.dark {
+      background: radial-gradient(circle at 80% 20%, #1a3a8a 0%, #0a1230 50%, #000 100%);
+      color: #f5f5f7;
+      grid-template-columns: 0.7fr 1.3fr;
+      padding: 48px 56px;
+    }
+    .spotlight-card.dark .spotlight-visual { order: 0; min-height: 0; }
+    .spotlight-card.dark .spotlight-text   { order: 1; }
+    .spotlight-card.dark .watch { width: 180px; height: 220px; }
+
+    .spotlight-card.music {
+      background: radial-gradient(circle at 20% 30%, #fa57c1 0%, #6a3fff 35%, #1d0e4a 80%, #0a0820 100%);
+      color: #f5f5f7;
+      grid-template-columns: 0.7fr 1.3fr;
+      padding: 48px 56px;
+    }
+    .spotlight-card.music .spotlight-visual { order: 0; min-height: 0; }
+    .spotlight-card.music .spotlight-text   { order: 1; }
+    .spotlight-card.music .music-phone { width: min(220px, 100%); }
+
+    .spotlight-text .kicker {
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .spotlight-card.dark .kicker { color: #2997ff; }
+    .spotlight-card.music .kicker { color: #ffb1e3; }
+
+    .spotlight-text h2 {
+      font-size: clamp(36px, 4.6vw, 60px);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0 0 20px;
+      color: #fff;
+    }
+
+    .spotlight-text p {
+      font-size: 18px;
+      line-height: 1.55;
+      margin: 0;
+      color: rgba(255,255,255,0.78);
+      max-width: 44ch;
+    }
+
+    .spotlight-text ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .spotlight-text ul li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.7);
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 6px;
+    }
+    .spotlight-text ul li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: 0.6;
+    }
+
+    .spotlight-visual {
+      display: grid;
+      place-items: center;
+      min-height: 320px;
+      position: relative;
+    }
+
+    /* Apple Watch mockup */
+    .watch {
+      width: 220px;
+      height: 260px;
+      border-radius: 56px;
+      background: linear-gradient(180deg, #2c2c2e, #1a1a1c);
+      box-shadow:
+        0 30px 60px rgba(0,0,0,0.5),
+        inset 0 1px 1px rgba(255,255,255,0.08);
+      padding: 10px;
+      position: relative;
+      animation: phoneFloat 6s ease-in-out infinite;
+    }
+    .watch::before, .watch::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 36px;
+      background: linear-gradient(180deg, #1a1a1c, #2c2c2e);
+      border-radius: 12px;
+    }
+    .watch::before { top: -28px; }
+    .watch::after { bottom: -28px; }
+    .watch-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 46px;
+      overflow: hidden;
+      background: #000;
+      position: relative;
+    }
+    .watch-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .watch-screen-empty {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,0.45);
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      padding: 16px;
+    }
+
+    /* Music spotlight phone */
+    .music-phone {
+      width: min(280px, 100%);
+      padding: 8px;
+      border-radius: 44px;
+      background: linear-gradient(180deg, #2c2c2e, #1c1c1e);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+      animation: phoneFloat 6s ease-in-out infinite;
+    }
+    .music-phone-screen {
+      border-radius: 36px;
+      overflow: hidden;
+      aspect-ratio: 9 / 19.5;
+      background: #1d1235;
+    }
+    .music-phone-screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Spotlight CTA button */
+    .spotlight-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 22px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: #fff;
+      color: #1d1d1f;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+    .spotlight-cta:hover {
+      background: #f5f5f7;
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+    .spotlight-cta::after { content: " ›"; }
+
+    @media (max-width: 900px) {
+      .spotlight-card {
+        grid-template-columns: 1fr;
+        padding: 48px 32px;
+        text-align: center;
+      }
+      .spotlight-text p, .spotlight-text ul li { max-width: none; }
+      .spotlight-text ul { display: inline-block; text-align: left; }
+      .spotlight-visual { min-height: 240px; }
+    }
+
+    /* ---------- Big text block (Apple "Get to know..." style) ---------- */
+    .feature-hero {
+      text-align: center;
+      padding: 0 20px;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .feature-hero h2 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.05;
+    }
+
+    .feature-hero p {
+      margin: 24px auto 0;
+      font-size: 21px;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    section.block.dark .feature-hero p { color: #a1a1a6; }
+
+    /* ---------- Privacy / FAQ list (cleaner) ---------- */
+    .policy-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 40px;
+    }
+
+    .policy-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      border: 1px solid var(--border);
+    }
+    .policy-card h4 {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+    .policy-card p, .policy-card li {
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .policy-card ul {
+      margin: 8px 0 0;
       padding-left: 18px;
     }
 
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
+    .policy-summary {
+      grid-column: span 2;
+      background: linear-gradient(135deg, #fff, #f5f5f7);
+      padding: 40px;
     }
-
-    .quote {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.88);
+    .policy-summary h3 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+    }
+    .policy-summary p {
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--muted);
     }
 
     .badge-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
+      gap: 8px;
+      margin-top: 16px;
     }
-
     .badge {
-      padding: 9px 12px;
+      padding: 6px 12px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.10);
-      color: var(--muted);
+      background: rgba(0,0,0,0.05);
+      color: var(--text);
       font-size: 13px;
+      font-weight: 500;
     }
 
-    .privacy-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
+    /* ---------- FAQ ---------- */
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
     }
-
-    .policy-stack {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      width: 100%;
+    details.faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 22px 4px;
     }
-
-    /* alternate layout: even left, odd right */
-    .policy-stack > .policy-card:nth-child(odd) {
-      grid-column: 1;
-    }
-
-    .policy-stack > .policy-card:nth-child(even) {
-      grid-column: 2;
-    }
-      display: grid;
-      gap: 12px;
-    }
-
-    .policy-card h4 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .policy-card ul { padding-left: 18px; margin: 8px 0 0; }
-
-    .cta {
-      text-align: center;
-      padding: 28px;
-    }
-
-    footer {
-      padding: 22px 0 46px;
-    }
-
-    .footer-shell {
+    details.faq-item summary {
+      list-style: none;
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
-      gap: 14px;
       align-items: center;
-      padding: 18px 20px;
-      border-radius: 24px;
+      gap: 16px;
+      font-size: 19px;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--black);
+    }
+    details.faq-item summary::-webkit-details-marker { display: none; }
+    details.faq-item summary::after {
+      content: "+";
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--muted);
+      transition: transform 0.2s ease;
+      line-height: 1;
+    }
+    details.faq-item[open] summary::after {
+      content: "−";
+    }
+    details.faq-item p {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      max-width: 70ch;
     }
 
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .contact-card {
+      background: var(--bg-alt);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+    }
+    section.block.alt .contact-card { background: #fff; }
+    .contact-card h3 {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+    .contact-card p, .contact-card li {
+      font-size: 16px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+    .contact-card ul {
+      padding-left: 18px;
+      margin: 8px 0 0;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      background: var(--bg-alt);
+      padding: 30px 0 36px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-shell {
+      max-width: var(--max-wide);
+      margin: 0 auto;
+      padding: 0 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
     .footer-shell p {
       margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
+      color: var(--muted-2);
+      font-size: 12px;
     }
 
-    @media (max-width: 1040px) {
-      .hero-grid, .privacy-grid, .split, .cards-4, .cards-3, .cards-2 {
-        grid-template-columns: 1fr 1fr;
-      }
-      .cards-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .tile { grid-column: span 6; min-height: 280px; padding: 28px 24px; }
+      .tile.span-8, .tile.span-12 { grid-column: span 12; }
+      .policy-grid { grid-template-columns: 1fr; }
+      .policy-summary { grid-column: span 1; padding: 28px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      section.block { padding: 44px 0; }
     }
 
-    @media (max-width: 780px) {
-      .hero-grid, .privacy-grid, .split, .cards-4, .cards-3, .cards-2 {
-        grid-template-columns: 1fr;
-      }
-      .stats {
-        grid-template-columns: 1fr;
-      }
-      .nav {
-        border-radius: 28px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-      .section-head {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .footer-shell {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .phone-screen {
-        min-height: 560px;
-      }
+    @media (max-width: 600px) {
+      .tile { grid-column: span 12; min-height: 0; }
+      .nav-links a:not(.cta) { display: none; }
+      .subnav-links a:not(.pill) { display: none; }
+      .hero { padding-top: 32px; }
+      section.block { padding: 36px 0; }
+      .section-head { margin-bottom: 28px; }
     }
-  
-    section[id], article[id], div[id] {
-      scroll-margin-top: 120px;
-    }
+
+    section[id] { scroll-margin-top: 110px; }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <nav class="nav glass">
-        <div class="brand"><span class="brand-mark"></span> KyleFest</div>
-        <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#how">How it works</a>
-          <a href="#about">About</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact" class="button primary">Contact</a>
-        </div>
-      </nav>
-    </div>
+    <nav class="nav">
+      <div class="brand"><span class="brand-mark"></span> KyleFest</div>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#about">About</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="cta">Contact</a>
+      </div>
+    </nav>
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <div class="hero-shell glass">
-          <div class="hero-grid">
-            <div class="hero-copy">
-              <div class="eyebrow">Local-first party app · chats, games, media, and more</div>
-              <h1>The all-in-one app for your next night out.</h1>
-              <p class="lead">
-                KyleFest keeps your group connected with party chat, shared photos and videos, live games, and quick ways to find what matters. It is designed for real-life groups hanging out together, not a public feed full of strangers.
-              </p>
-              <div class="hero-actions">
-                <a class="button primary" href="#privacy">View privacy policy</a>
-                <a class="button glass" href="#features">Explore features</a>
-                <a class="app-store-button" href="https://testflight.apple.com/join/V8UbQQmP" target="_blank">
-                  <span class="app-store-badge"></span>
-                  <span class="app-store-text">
-                  <strong>TestFlight Beta</strong>
-                </span>
-              </a>
-                </span>
-                </span>
-              </div>
-              <div class="stats">
-                <div class="stat glass"><strong>Local-first</strong><span>Built around party sessions and nearby connections</span></div>
-                <div class="stat glass"><strong>Shared media</strong><span>Photos and videos stay inside the experience</span></div>
-                <div class="stat glass"><strong>Live games</strong><span>Track challenges, scores, and group activity</span></div>
+        <p class="eyebrow-mini">KyleFest</p>
+        <h1>Hello,<br>party.</h1>
+        <p class="hero-tag">The all-in-one app for your next night out.</p>
+        <div class="hero-actions">
+          <a href="#features">Explore features</a>
+          <a href="https://testflight.apple.com/join/V8UbQQmP" target="_blank">Join the TestFlight beta</a>
+        </div>
+
+        <div class="hero-visual-wrap">
+          <div class="phone-stage">
+            <div class="phone left">
+              <div class="phone-screen">
+                <img src="chat-preview.png" alt="KyleFest chat preview" />
               </div>
             </div>
-
-            <div class="hero-visual">
-              <div class="phone">
-                <div class="phone-screen" style="padding:0; background:#071327; display:flex; align-items:center; justify-content:center; overflow:hidden; position:relative;">
-                  <img id="appPreviewImage" src="IMG_1090.png" alt="KyleFest app preview" style="width:100%; height:100%; object-fit:cover; display:block;" />
-
-                  <div style="position:absolute; left:14px; right:14px; bottom:14px; display:flex; justify-content:center; align-items:center; pointer-events:none;">
-                    <div class="preview-container" style="pointer-events:auto;">
-                      <button class="preview-dot active" data-preview="homeview-preview.png" type="button" aria-label="Home preview"></button>
-                      <button class="preview-dot" data-preview="chat-preview.png" type="button" aria-label="Chat preview"></button>
-                      <button class="preview-dot" data-preview="games-preview.png" type="button" aria-label="Games preview"></button>
-                    </div>
-                  </div>
-                </div>
-                </div>
+            <div class="phone center">
+              <div class="phone-screen">
+                <img src="IMG_1090.png" alt="KyleFest home preview" />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-        </div>
-      </div>
+            <div class="phone right">
+              <div class="phone-screen">
+                <img src="playlist-preview.png" alt="KyleFest playlist preview" />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="block" id="features">
+    <!-- BIG STATEMENT -->
+    <section class="block alt">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Everything KyleFest does</h2>
-            <p>KyleFest is built as a complete local party hub. It brings together communication, media, games, discovery, profiles, and session tools so your whole group can use one app instead of bouncing between five different ones.</p>
-          </div>
+        <div class="feature-hero reveal">
+          <p class="eyebrow-mini" style="color: var(--accent);">Built for groups</p>
+          <h2>One app for the whole party. Not another public feed.</h2>
+          <p>KyleFest keeps your group connected with party chat, shared photos and videos, live games, and quick ways to find what matters — designed for real-life groups hanging out together.</p>
         </div>
-        <div class="cards-4">
-          <article class="feature glass">
-            <div class="icon">🏠</div>
-            <h3>Home dashboard</h3>
-            <p>Your main party overview with quick access to live activity, party info, and the things people care about most.</p>
-            <ul>
-              <li>Profile and settings access</li>
-              <li>Party name and connected users</li>
-              <li>At-a-glance widgets for key features</li>
-            </ul>
+      </div>
+    </section>
+
+    <!-- FEATURES — HIGHLIGHTS SLIDER -->
+    <section class="block slider-section" id="features">
+      <div class="slider-head reveal">
+        <div>
+          <p class="kicker" style="color: var(--accent); font-size: 17px; font-weight: 600; margin: 0 0 8px;">Features</p>
+          <h2>Get the highlights.</h2>
+        </div>
+        <div class="slider-controls">
+          <button class="slider-btn" id="slidePrev" aria-label="Previous" disabled>
+            <svg viewBox="0 0 24 24"><polyline points="15 6 9 12 15 18"></polyline></svg>
+          </button>
+          <button class="slider-btn" id="slideNext" aria-label="Next">
+            <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slider-viewport">
+        <div class="slider-track" id="sliderTrack">
+          <article class="slide pink">
+            <div class="slide-emoji">🏠</div>
+            <div class="slide-content">
+              <p class="kicker">Home</p>
+              <h3>Your party, at a glance.</h3>
+              <p>The main dashboard with live activity, party info, and the things people care about most — all on one screen.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">💬</div>
-            <h3>Party chat + DMs</h3>
-            <p>Keep the group connected with a global party chat and private one-on-one conversations.</p>
-            <ul>
-              <li>Shared party-wide chat</li>
-              <li>Direct messages between users</li>
-              <li>Quick access to unread activity</li>
-            </ul>
+
+          <article class="slide purple">
+            <div class="slide-emoji">💬</div>
+            <div class="slide-content">
+              <p class="kicker">Chat</p>
+              <h3>Party chat &amp; DMs.</h3>
+              <p>Shared party chat plus private one-on-one conversations between members.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">📸</div>
-            <h3>Camera + shared media</h3>
-            <p>Capture photos and short videos inside the app and keep the party’s content together in one place.</p>
-            <ul>
-              <li>In-app camera flow</li>
-              <li>Shared photo and video library</li>
-              <li>Party-focused media experience</li>
-            </ul>
+
+          <article class="slide blue">
+            <div class="slide-emoji">📸</div>
+            <div class="slide-content">
+              <p class="kicker">Camera</p>
+              <h3>Capture the night.</h3>
+              <p>In-app camera and a shared photo and video library — with smart on-device face suggestions.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">🎮</div>
-            <h3>Games</h3>
-            <p>Track games, side competitions, and live challenges without needing separate scorekeeping apps.</p>
-            <ul>
-              <li>Live game support</li>
-              <li>Party challenges and competition tools</li>
-              <li>Score and activity tracking</li>
-            </ul>
+
+          <article class="slide green">
+            <div class="slide-emoji">🎮</div>
+            <div class="slide-content">
+              <p class="kicker">Games</p>
+              <h3>Track every challenge.</h3>
+              <p>Live game support, party challenges, and score tracking — without separate apps.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">📊</div>
-            <h3>Polls</h3>
-            <p>Start quick polls to settle plans, pick music, choose activities, or make group decisions fast.</p>
-            <ul>
-              <li>Live party voting</li>
-              <li>Quick participation</li>
-              <li>Easy group decision-making</li>
-            </ul>
+
+          <article class="slide yellow">
+            <div class="slide-emoji">📞</div>
+            <div class="slide-content">
+              <p class="kicker">Voice</p>
+              <h3>One-tap calling.</h3>
+              <p>Direct calls between party members over your local network. No dialer needed.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">🔎</div>
-            <h3>Search</h3>
-            <p>Find people, chats, games, media, polls, and other party content from one central search experience.</p>
-            <ul>
-              <li>Deep links into app sections</li>
-              <li>Fast navigation across party content</li>
-              <li>Designed for quick in-the-moment use</li>
-            </ul>
+
+          <article class="slide orange">
+            <div class="slide-emoji">🃏</div>
+            <div class="slide-content">
+              <p class="kicker">Casino</p>
+              <h3>Friendly competition.</h3>
+              <p>In-app blackjack and casino games using your shared CookPoints balance. Just for fun — no real money.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">🧑</div>
-            <h3>Profiles</h3>
-            <p>Give every party member a recognizable identity with profile details and session presence.</p>
-            <ul>
-              <li>Display name and profile photo</li>
-              <li>Profile and app settings</li>
-              <li>Party identity built into the experience</li>
-            </ul>
+
+          <article class="slide pink">
+            <div class="slide-emoji">🏆</div>
+            <div class="slide-content">
+              <p class="kicker">Tournaments</p>
+              <h3>Brackets &amp; achievements.</h3>
+              <p>Multi-round tournaments with Game Center achievements and lifetime stats that follow you.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">📍</div>
-            <h3>Find people</h3>
-            <p>Built around helping party members stay connected and locate each other during a session.</p>
-            <ul>
-              <li>Designed for in-party use</li>
-              <li>Focused on group coordination</li>
-              <li>Works within the party experience</li>
-            </ul>
+
+          <article class="slide purple">
+            <div class="slide-emoji">🔔</div>
+            <div class="slide-content">
+              <p class="kicker">Notifications</p>
+              <h3>Stay in the loop.</h3>
+              <p>Party invites, messages, calls, and game activity. Fully customizable in Settings.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">🍻</div>
-            <h3>Drink counter</h3>
-            <p>Track your drinks during a party session with a fast, playful counter built right into Home.</p>
-            <ul>
-              <li>One-tap updates</li>
-              <li>Session-based tracking</li>
-              <li>Integrated into the party dashboard</li>
-            </ul>
+
+          <article class="slide blue">
+            <div class="slide-emoji">📊</div>
+            <div class="slide-content">
+              <p class="kicker">Polls</p>
+              <h3>Quick group decisions.</h3>
+              <p>Settle plans, pick the music, choose the next move. Live, fast, and simple.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">💰</div>
-            <h3>CookPoints</h3>
-            <p>Keep an in-app balance for party-based points, competition, or future economy features.</p>
-            <ul>
-              <li>Visible balance on Home</li>
-              <li>Built into the party ecosystem</li>
-              <li>Supports game-style progression</li>
-            </ul>
+
+          <article class="slide green">
+            <div class="slide-emoji">🔎</div>
+            <div class="slide-content">
+              <p class="kicker">Search</p>
+              <h3>Find anything, fast.</h3>
+              <p>People, chats, games, media, polls — all from one central search experience.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">🎵</div>
-            <h3>Playlist tools</h3>
-            <p>Keep music part of the party flow with playlist-related features available from the dashboard.</p>
-            <ul>
-              <li>Music-focused party utility</li>
-              <li>Quick visibility from Home</li>
-              <li>Built for shared group use</li>
-            </ul>
+
+          <article class="slide yellow">
+            <div class="slide-emoji">🧑</div>
+            <div class="slide-content">
+              <p class="kicker">Profiles</p>
+              <h3>Be recognizable.</h3>
+              <p>Display name, photo, and session presence — every party member has an identity.</p>
+            </div>
           </article>
-          <article class="feature glass">
-            <div class="icon">⚙️</div>
-            <h3>Party management</h3>
-            <p>Hosting and party controls are built into the app so the group can stay organized during a session.</p>
-            <ul>
-              <li>Host-aware experience</li>
-              <li>Connected user visibility</li>
-              <li>Session-focused controls</li>
-            </ul>
+
+          <article class="slide orange">
+            <div class="slide-emoji">📍</div>
+            <div class="slide-content">
+              <p class="kicker">Find people</p>
+              <h3>Built for in-party use.</h3>
+              <p>Stay connected and locate party members during a session, on your local network.</p>
+            </div>
+          </article>
+
+          <article class="slide pink">
+            <div class="slide-emoji">🍻</div>
+            <div class="slide-content">
+              <p class="kicker">Drink counter</p>
+              <h3>One-tap tracking.</h3>
+              <p>A fast, playful counter built right into Home. Session-based and integrated into the dashboard.</p>
+            </div>
+          </article>
+
+          <article class="slide green">
+            <div class="slide-emoji">💰</div>
+            <div class="slide-content">
+              <p class="kicker">CookPoints</p>
+              <h3>The party economy.</h3>
+              <p>Your in-app balance for competitions, casino games, and progression across sessions.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <div class="slider-progress reveal">
+        <div class="slider-progress-track">
+          <div class="slider-progress-bar" id="sliderProgressBar"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="block alt" id="how">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="kicker">How it works</p>
+          <h2>Designed around local sessions.</h2>
+          <p>So your group can hang out, share media, and keep up with live activity in a way that feels immediate and useful in person.</p>
+        </div>
+        <div class="tiles">
+          <article class="tile span-6">
+            <h3>Host or join. Then everything just works.</h3>
+            <p>KyleFest is centered around party sessions and nearby group activity. The experience feels immediate and relevant — not disconnected.</p>
+            <div class="badge-row">
+              <span class="badge">Host or join</span>
+              <span class="badge">See live activity</span>
+              <span class="badge">Share with the group</span>
+              <span class="badge">Jump into games</span>
+            </div>
+          </article>
+          <article class="tile span-6">
+            <h3>Built for real groups, not random strangers.</h3>
+            <p>“KyleFest is meant to feel like one shared app for everyone at the same party — not another public social platform.”</p>
+            <p>That local-first design is a big part of both the experience and the privacy model.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="block" id="how">
-      <div class="container split">
-        <div class="panel glass">
-          <h3>How KyleFest works</h3>
-          <p>KyleFest is designed around local sessions, so your group can hang out, share media, and keep up with live activity in a way that feels immediate and actually useful in person.</p>
-          <div class="badge-row">
-            <span class="badge">Host or join a party</span>
-            <span class="badge">See live activity</span>
-            <span class="badge">Share with the group</span>
-            <span class="badge">Jump into games</span>
+    <!-- APPLE WATCH SPOTLIGHT -->
+    <section class="block" id="watch">
+      <div class="spotlight reveal">
+        <div class="spotlight-card dark">
+          <div class="spotlight-text">
+            <p class="kicker">Apple Watch</p>
+            <h2>The party, on your wrist.</h2>
+            <p>A companion Apple Watch app keeps you connected to the party from your wrist when your phone is in your pocket.</p>
+            <ul>
+              <li>Quick party glance from your watch</li>
+              <li>Stay in sync with your iPhone</li>
+              <li>Designed for hands-free party moments</li>
+            </ul>
           </div>
-        </div>
-        <div class="panel glass">
-          <h3>Built for real groups, not random strangers</h3>
-          <p class="quote">“KyleFest is meant to feel like one shared app for everyone at the same party, not another public social platform.”</p>
-          <p>That local-first design is a big part of both the experience and the privacy model.</p>
+          <div class="spotlight-visual">
+            <div class="watch">
+              <div class="watch-screen">
+                <img src="watch-preview.png" alt="KyleFest on Apple Watch" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+                <div class="watch-screen-empty" style="display:none;">Add watch-preview.png</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- APPLE MUSIC SPOTLIGHT -->
+    <section class="block alt" id="music">
+      <div class="spotlight reveal">
+        <div class="spotlight-card music">
+          <div class="spotlight-text">
+            <p class="kicker">Shared playlist</p>
+            <h2>Powered by Apple Music. Built for the party.</h2>
+            <p>Build a collaborative party playlist. Anyone in the party can add songs and keep the vibe going.</p>
+            <ul>
+              <li>Search and add songs from Apple Music</li>
+              <li>Shared queue with shuffle and contributors</li>
+              <li>Add Only mode for hosts to control playback</li>
+            </ul>
+            <a class="spotlight-cta" href="https://www.apple.com/ca/apple-music/" target="_blank" rel="noopener">Learn more about Apple Music</a>
+          </div>
+          <div class="spotlight-visual">
+            <div class="music-phone">
+              <div class="music-phone-screen">
+                <img src="playlist-preview.png" alt="KyleFest party playlist on iPhone" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
     <section class="block" id="about">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>What makes KyleFest different</h2>
-            <p>KyleFest is not trying to be another public social app. It is built around the real-life experience of being at the same party, event, trip, or weekend with the same people.</p>
-          </div>
+        <div class="section-head reveal">
+          <p class="kicker">About</p>
+          <h2>What makes KyleFest different.</h2>
+          <p>It's not trying to be another public social app. It's built around the real-life experience of being at the same party, event, trip, or weekend with the same people.</p>
         </div>
-        <div class="cards-3">
-          <article class="feature glass">
-            <h3>Local-first by design</h3>
-            <p>KyleFest is centered around party sessions and nearby group activity, so the experience feels immediate and relevant instead of disconnected.</p>
+        <div class="tiles">
+          <article class="tile span-6">
+            <h3>Local-first by design.</h3>
+            <p>Centered around party sessions and nearby group activity. Immediate and relevant.</p>
           </article>
-          <article class="feature glass">
-            <h3>One app instead of many</h3>
-            <p>Chat, shared content, games, polls, quick stats, search, and party tools all live together in one place.</p>
+          <article class="tile span-6">
+            <h3>One app instead of many.</h3>
+            <p>Chat, shared content, games, polls, stats, search, and party tools in one place.</p>
           </article>
-          <article class="feature glass">
-            <h3>Built for actual group events</h3>
-            <p>Cabins, house parties, weekends away, and nights out all work better when everyone is using one shared party hub.</p>
+          <article class="tile span-6">
+            <h3>For actual group events.</h3>
+            <p>Cabins, house parties, weekends away, and nights out — when everyone's using one shared hub.</p>
+          </article>
+          <article class="tile span-6">
+            <h3>Party management, built in.</h3>
+            <p>Host-aware experience, connected user visibility, and session-focused controls — so the group stays organized during a session.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="block" id="privacy">
+    <!-- PRIVACY -->
+    <section class="block alt" id="privacy">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Privacy Policy</h2>
-            <p>This page is written to work both as your public website privacy section and as the policy users can access from the App Store.</p>
-          </div>
+        <div class="section-head reveal">
+          <p class="kicker">Privacy</p>
+          <h2>Your party. Your people. Your privacy.</h2>
+          <p>This page works as your public website privacy section and as the policy users can access from the App Store.</p>
         </div>
-        <div class="privacy-grid">
-          <div class="policy-card glass">
-            <h3>Your party. Your people. Your privacy.</h3>
-            <p>In short: KyleFest does not sell your data, does not serve ads, and does not share your information with third-party advertisers. Most of your data stays on your device. The only data stored on our servers is your account profile if you create one. Party activity, messages, and game data are not persisted after you leave.</p>
+
+        <div class="policy-grid reveal">
+          <div class="policy-summary policy-card">
+            <h3>The short version.</h3>
+            <p>KyleFest doesn't sell your data, doesn't show ads, and doesn't share your information with advertisers. Most of your data stays on your device. The only thing we keep on our servers is your account profile, if you choose to create one. Party chats, games, photos, and other activity stay between you and your party — they aren't saved to any server after the party ends. You can delete your account anytime in Settings.</p>
             <div class="badge-row">
               <span class="badge">Last updated: April 2026</span>
               <span class="badge">Intended for 18+</span>
@@ -889,182 +1554,247 @@
             </div>
           </div>
 
-          <div class="policy-stack">
-            <article class="policy-card glass">
-              <h4>1. What we collect</h4>
-              <ul>
-                <li>Account info: if you create an account, we store your email address, display name, and a hashed password via Supabase. If you use Sign in with Apple, we receive the identity token Apple provides.</li>
-                <li>Profile data: your display name and profile photo are stored locally on your device. If you have an account, your display name is also stored so it can sync across devices.</li>
-                <li>Lifetime stats: wins, losses, Elo rating, CookPoints, and similar gameplay statistics may be stored locally and may sync through legacy Apple sign-in backup flows.</li>
-                <li>Moderation preferences: mute, hide, and block relationships are stored locally on your device.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>1. What we collect</h4>
+            <ul>
+              <li>Account info: if you create an account, we store your email address, display name, and password. If you use Sign in with Apple, we receive an identity token from Apple — we never see your Apple ID password.</li>
+              <li>Profile: your display name and profile photo are saved on your device. If you have an account, your display name also syncs so you can use it across devices.</li>
+              <li>Game stats: wins, losses, ratings, CookPoints, and achievements are saved on your device.</li>
+              <li>Moderation preferences: if you mute, hide, or block someone, that's saved on your device only.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>2. Party and social data</h4>
-              <ul>
-                <li>When you join a party, your display name, avatar, and profile are shared with other party members over the local network.</li>
-                <li>Chat messages, game sessions, bets, polls, and shared photos or videos are transmitted in real time between devices on the same network.</li>
-                <li>This party data lives in memory while the app is running and is not persisted to a server after you leave the party.</li>
-                <li>Direct messages between party members use end-to-end encryption, and the encryption keys stay on your device.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>2. Party &amp; social data</h4>
+            <ul>
+              <li>When you join a party, your display name, profile photo, and game activity are shared with the other party members over your local Wi-Fi network.</li>
+              <li>Chat messages, game sessions, bets, polls, photos, and videos are sent in real time between devices in the party. This information isn't saved to any server — it stays in the app while the party is going and is cleared when you leave.</li>
+              <li>Direct messages between party members are end-to-end encrypted, so only the sender and receiver can read them.</li>
+              <li>Other party members can see your display name, photo, game activity, and chat messages while you're in the same party. If you mute, hide, or block someone, only you see the effect — they aren't notified.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>3. How we use your data</h4>
-              <ul>
-                <li>To identify you in parties and sync your profile across devices</li>
-                <li>To track achievements, leaderboards, Elo ratings, and other gameplay features</li>
-                <li>To apply your local moderation settings like mute, hide, and block</li>
-                <li>We do not sell your data, serve ads, or share your information with third-party advertisers</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>3. How we use your data</h4>
+            <ul>
+              <li>To identify you in parties and sync across your devices</li>
+              <li>To track achievements, leaderboards, and ratings</li>
+              <li>To apply your mute, hide, and block choices on your device</li>
+              <li>We don't sell your data, show ads, or share your information with advertisers</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>4. Where data is stored</h4>
-              <ul>
-                <li>On your device: profile info, avatar, moderation preferences, drink preferences, and notification settings</li>
-                <li>In iOS Keychain: encryption keys and secure credential-related items</li>
-                <li>In Supabase: if you create an account, your email, display name, and authentication credentials</li>
-                <li>In memory only: chat, game state, bets, party rosters, and shared media during a live party session</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>4. Where your data is stored</h4>
+            <ul>
+              <li>On your device: profile, photo, preferences, game stats, and moderation choices</li>
+              <li>On our servers: if you create an account, your email, display name, and login credentials are stored with Supabase, our authentication provider</li>
+              <li>iCloud: some account info and game stats may sync through your personal iCloud account so they're available on your other devices</li>
+              <li>Not stored anywhere long-term: chat, photos, videos, game state, and party activity. These stay in the app during a party and are cleared when you leave</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>5. Account deletion</h4>
-              <ul>
-                <li>You can request account deletion from Settings → Data &amp; Account → Delete Account.</li>
-                <li>Local data like your profile, avatar, and moderation preferences is cleared from your device when you delete your account.</li>
-                <li>Server-side deletion of your Supabase profile and authentication record is processed as part of the deletion flow.</li>
-                <li>In-memory party data is not persisted after you leave a party, so there is nothing additional to delete for session-only data.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>5. Photos, videos &amp; camera</h4>
+            <ul>
+              <li>The app uses your camera to take photos and videos to share with your party. We only access the camera when you choose to use it.</li>
+              <li>If you pick a photo from your library to share, only the photos you select are sent. We don't browse your full library.</li>
+              <li>You can choose to save photos or videos from the party back to your photo library.</li>
+              <li>Photos and videos shared in a party are sent directly between devices and aren't uploaded to any server.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>6. Data shared with other users</h4>
-              <ul>
-                <li>While in a party, other members can see your display name, profile photo, game activity, chat messages, bets, poll votes, and shared media.</li>
-                <li>Your email address is never shared with other users.</li>
-                <li>Moderation actions you take are private to your device and are not visible to the person you moderated.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>6. Face recognition (on your device)</h4>
+            <ul>
+              <li>To help tag party members in shared photos, the app uses Apple's on-device face recognition to suggest who appears in each photo.</li>
+              <li>All face recognition happens on your device. No face data, photos, or recognition results ever leave your device or get sent to any server.</li>
+              <li>You can opt out of face suggestions in Settings.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>7. Third-party services</h4>
-              <ul>
-                <li>Supabase is used for account authentication and profile storage.</li>
-                <li>Apple services may be used for Sign in with Apple and legacy iCloud or CloudKit backup flows.</li>
-                <li>We do not integrate analytics, advertising, or tracking SDKs.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>7. Voice calls &amp; microphone</h4>
+            <ul>
+              <li>The microphone is used for voice calls with party members and for recording videos. We only access it when you choose to use those features.</li>
+              <li>Voice calls happen directly between devices on your local network. They aren't routed through any server, and we don't record or store them.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>8. Security</h4>
-              <ul>
-                <li>Peer-to-peer connections use encrypted transport.</li>
-                <li>Direct messages use end-to-end encryption and device-generated keys stored securely on your device.</li>
-                <li>We do not store plaintext passwords.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>8. Location &amp; nearby devices</h4>
+            <ul>
+              <li>Apple requires location permission for apps that use the local network to find nearby devices. We use this only to discover other party members on your Wi-Fi — we don't track or store your location.</li>
+              <li>On supported devices, the app may use Ultra Wideband to estimate how close other party members are. This stays on your device and isn't sent to any server.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>9. Voice calling</h4>
-              <p>Voice calls occur only between devices on the same local Wi-Fi network during an active party session. Voice data is transmitted peer-to-peer and is not routed through a centralized server. Calls are not recorded, stored, or persisted by the app or our servers.</p>
-            </article>
+          <article class="policy-card">
+            <h4>9. Apple Watch</h4>
+            <p>If you use the KyleFest Apple Watch app, your phone and watch share party info with each other directly. Nothing extra is sent to any server.</p>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>10. Data retention and deletion</h4>
-              <ul>
-                <li>Party activity is held in memory during a session and is automatically deleted when you leave the party or close the app.</li>
-                <li>Local profile data, moderation preferences, and game stats are retained until you delete your account or uninstall the app.</li>
-                <li>Supabase account data is deleted within 30 days of an account deletion request.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>10. Notifications</h4>
+            <ul>
+              <li>The app uses Apple's push notification service to send you alerts about parties, messages, and games. Apple gives the app a notification token for your device — we use this only to deliver KyleFest notifications.</li>
+              <li>You can turn off notifications anytime in your device settings or in the app.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>11. Data export</h4>
-              <p>You can export your account data from Settings → Data &amp; Account → Export Data. The export contains your profile, stats, and preferences. It does not include in-memory party data because that session data is ephemeral.</p>
-            </article>
+          <article class="policy-card">
+            <h4>11. Music</h4>
+            <ul>
+              <li>If you add songs to a shared party playlist, the app uses Apple Music to search for and play tracks. An Apple Music subscription is required to play full songs from the catalog.</li>
+              <li>Your music listening is handled by Apple Music — we don't store your listening history or share it.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>12. No tracking or analytics</h4>
-              <ul>
-                <li>KyleFest does not use analytics, tracking, or behavioral monitoring SDKs.</li>
-                <li>We do not track your behavior, build advertising profiles, or sell your data.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>12. Game Center</h4>
+            <ul>
+              <li>The app uses Apple Game Center to track achievements. If you sign in to Game Center, your achievements are reported to Apple under your Game Center account.</li>
+              <li>Game Center is run by Apple. You can manage it in your device settings.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass">
-              <h4>13. Your rights</h4>
-              <ul>
-                <li>You can access, export, and delete your data at any time through Settings.</li>
-                <li>For privacy-related requests, including access, correction, or deletion, contact us directly.</li>
-              </ul>
-            </article>
+          <article class="policy-card">
+            <h4>13. Account deletion</h4>
+            <ul>
+              <li>You can delete your account anytime from Settings → Data &amp; Account → Delete Account. This signs you out and removes your account.</li>
+              <li>Your local data on this device is cleared right away.</li>
+              <li>Your account info on our servers is removed as part of the deletion request. If the server is temporarily unavailable, your account is queued for removal.</li>
+            </ul>
+          </article>
 
-            <article class="policy-card glass" id="contact">
-              <h4>14. Contact</h4>
-              <p>Questions about this policy or the app can be sent to <a href="mailto:KyleFestApp@gmail.com"><strong>KyleFestApp@gmail.com</strong></a>.</p>
-            </article>
-          </div>
+          <article class="policy-card">
+            <h4>14. Data shared with other users</h4>
+            <ul>
+              <li>While you're in a party, other members can see your display name, profile photo, game activity, chat messages, bets, poll votes, and any media you share.</li>
+              <li>Your email address is never shared with other users.</li>
+              <li>When you mute, hide, or block someone, the other person is not notified.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>15. Third-party services</h4>
+            <ul>
+              <li>Supabase: we use Supabase to handle account sign-up and login.</li>
+              <li>Apple: we use Apple services for Sign in with Apple, iCloud sync, push notifications, Apple Music, and Game Center.</li>
+              <li>We don't use any analytics, advertising, or tracking SDKs.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>16. Data security</h4>
+            <ul>
+              <li>Connections between devices in a party are encrypted, so others on the network can't read your party traffic.</li>
+              <li>Direct messages between party members are end-to-end encrypted — only you and the person you're messaging can read them. We have no way to access them.</li>
+              <li>Your password is securely hashed by our authentication provider. We never see or store your plain-text password.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>17. Data retention</h4>
+            <ul>
+              <li>Party activity (chat, games, bets, photos, videos) is cleared when you leave the party or close the app.</li>
+              <li>Profile, preferences, and game stats stay on your device until you delete your account or uninstall the app.</li>
+              <li>Account info on our servers is removed within 30 days of an account deletion request.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>18. Data export</h4>
+            <p>You can export your account data anytime from Settings → Data &amp; Account → Export Data. You'll get a file with your profile, stats, and preferences. Party activity isn't included because it isn't stored after the party ends.</p>
+          </article>
+
+          <article class="policy-card">
+            <h4>19. No tracking or analytics</h4>
+            <ul>
+              <li>KyleFest doesn't use any analytics, tracking, or behavioral monitoring tools.</li>
+              <li>We don't track your behavior, build advertising profiles, or sell your data.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>20. Children</h4>
+            <p>KyleFest is intended for adults of legal drinking age. The app is not designed for and should not be used by children.</p>
+          </article>
+
+          <article class="policy-card">
+            <h4>21. Your rights</h4>
+            <ul>
+              <li>You can access, export, and delete your data anytime in Settings.</li>
+              <li>If you live in the EU, UK, or California, you have additional rights under your local privacy laws. Email us at <a href="mailto:KyleFestApp@gmail.com">KyleFestApp@gmail.com</a> to make a request.</li>
+            </ul>
+          </article>
+
+          <article class="policy-card">
+            <h4>22. Contact</h4>
+            <p>Questions about this privacy policy or your data? Email us at <a href="mailto:KyleFestApp@gmail.com"><strong>KyleFestApp@gmail.com</strong></a>.</p>
+          </article>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section class="block" id="faq">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Frequently asked questions</h2>
-            <p>Quick answers to the most common questions about what KyleFest is, how it works, and what kind of experience it is built for.</p>
-          </div>
+        <div class="section-head reveal">
+          <p class="kicker">FAQ</p>
+          <h2>Frequently asked questions.</h2>
+          <p>Quick answers to the most common questions about KyleFest.</p>
         </div>
-        <div class="cards-2">
-          <article class="faq glass">
-            <h3>What is KyleFest?</h3>
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>What is KyleFest?</summary>
             <p>KyleFest is a local-first party app that combines chat, shared media, games, polls, party tools, and quick navigation into one experience for groups hanging out together.</p>
-          </article>
-          <article class="faq glass">
-            <h3>Is KyleFest a public social network?</h3>
-            <p>No. It is designed around private party sessions and group experiences rather than public feeds or open discovery.</p>
-          </article>
-          <article class="faq glass">
-            <h3>What can you do in the app?</h3>
-            <p>You can message the group, send DMs, use the camera, view shared photos and videos, track games, run polls, manage party activity, and use the Home dashboard to keep up with everything.</p>
-          </article>
-          <article class="faq glass">
-            <h3>Who is the app for?</h3>
+          </details>
+          <details class="faq-item">
+            <summary>Is KyleFest a public social network?</summary>
+            <p>No. It's designed around private party sessions and group experiences rather than public feeds or open discovery.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What can you do in the app?</summary>
+            <p>You can message the group, send DMs, make voice calls, use the camera, view shared photos and videos, track games and tournaments, play casino-style games for fun, run polls, build a shared Apple Music playlist, and use the Home dashboard to keep up with everything.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is there an Apple Watch app?</summary>
+            <p>Yes — KyleFest comes with a companion Apple Watch app so you can stay connected to the party from your wrist when your phone is in your pocket.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Who is the app for?</summary>
             <p>KyleFest is built for friend groups, parties, cabins, weekends away, events, and other local group hangouts where people want one shared app experience.</p>
-          </article>
-          <article class="faq glass">
-            <h3>Will an Android version come out?</h3>
-            <p>No — KyleFest is built for iOS. Maybe one day… but right now we’re keeping it in the Apple ecosystem.</p>
-          </article>
-          <article class="faq glass">
-            <h3>Why is it local-first?</h3>
+          </details>
+          <details class="faq-item">
+            <summary>Will an Android version come out?</summary>
+            <p>No — KyleFest is built for iOS. Maybe one day… but right now we're keeping it in the Apple ecosystem.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Why is it local-first?</summary>
             <p>Because the app is meant to feel immediate and connected to the people around you right now, not to a giant public network of strangers.</p>
-          </article>
+          </details>
         </div>
       </div>
     </section>
 
-    <section class="block" id="contact">
+    <!-- CONTACT -->
+    <section class="block alt" id="contact">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Contact</h2>
-            <p>Questions, support requests, business inquiries, or App Store review follow-up can all go through the contact options below.</p>
-          </div>
+        <div class="section-head reveal">
+          <p class="kicker">Contact</p>
+          <h2>Get in touch.</h2>
+          <p>Questions, support requests, business inquiries, or App Store review follow-up — all through the contact options below.</p>
         </div>
-        <div class="cards-2">
-          <article class="panel glass">
+        <div class="contact-grid reveal">
+          <article class="contact-card">
             <h3>Contact card</h3>
             <p><strong>Email:</strong> <a href="mailto:KyleFestApp@gmail.com">KyleFestApp@gmail.com</a></p>
             <p><strong>App:</strong> KyleFest</p>
             <p><strong>Focus:</strong> Local-first party communication, games, media, and group coordination</p>
             <p><strong>Support topics:</strong> App questions, privacy questions, account questions, and review-related contact</p>
           </article>
-          <article class="panel glass">
+          <article class="contact-card">
             <h3>What to include when contacting support</h3>
             <ul>
               <li>Your device model and iOS version</li>
@@ -1076,18 +1806,15 @@
         </div>
       </div>
     </section>
-
-    
   </main>
 
   <footer>
-    <div class="container">
-      <div class="footer-shell glass">
-        <div class="brand"><span class="brand-mark"></span> KyleFest</div>
-        <p>© 2026 KyleFest. Built for local parties, shared moments, and keeping the group together.</p>
-      </div>
+    <div class="footer-shell">
+      <div class="brand"><span class="brand-mark"></span> KyleFest</div>
+      <p>© 2026 KyleFest. Built for local parties, shared moments, and keeping the group together.</p>
     </div>
   </footer>
+
   <script>
     document.querySelectorAll('a[href^="#"]').forEach((link) => {
       link.addEventListener('click', (event) => {
@@ -1101,18 +1828,83 @@
       });
     });
 
-    const previewImage = document.getElementById('appPreviewImage');
-    const previewButtons = document.querySelectorAll('.preview-dot');
+    // ---- Scroll reveal ----
+    const revealTargets = document.querySelectorAll('.reveal, .tiles');
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+      revealTargets.forEach((el) => io.observe(el));
+    } else {
+      revealTargets.forEach((el) => el.classList.add('in'));
+    }
 
-    previewButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const nextSrc = button.getAttribute('data-preview');
-        if (!previewImage || !nextSrc) return;
-        previewImage.src = nextSrc;
-        previewButtons.forEach((btn) => btn.classList.remove('active'));
-        button.classList.add('active');
+    // ---- Highlights slider ----
+    const sliderTrack = document.getElementById('sliderTrack');
+    const slidePrev = document.getElementById('slidePrev');
+    const slideNext = document.getElementById('slideNext');
+    const sliderProgressBar = document.getElementById('sliderProgressBar');
+
+    if (sliderTrack && slidePrev && slideNext) {
+      const getStep = () => {
+        const slide = sliderTrack.querySelector('.slide');
+        if (!slide) return 320;
+        const styles = window.getComputedStyle(sliderTrack);
+        const gap = parseFloat(styles.columnGap || styles.gap || '18');
+        return slide.getBoundingClientRect().width + gap;
+      };
+
+      const updateState = () => {
+        const max = sliderTrack.scrollWidth - sliderTrack.clientWidth;
+        const x = sliderTrack.scrollLeft;
+        slidePrev.disabled = x <= 2;
+        slideNext.disabled = x >= max - 2;
+        if (sliderProgressBar) {
+          const pct = max <= 0 ? 100 : Math.min(100, Math.max(8, (x / max) * 100));
+          sliderProgressBar.style.width = pct + '%';
+        }
+      };
+
+      slidePrev.addEventListener('click', () => {
+        sliderTrack.scrollBy({ left: -getStep(), behavior: 'smooth' });
       });
-    });
+      slideNext.addEventListener('click', () => {
+        sliderTrack.scrollBy({ left: getStep(), behavior: 'smooth' });
+      });
+
+      let scrollRaf = null;
+      sliderTrack.addEventListener('scroll', () => {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(() => {
+          updateState();
+          scrollRaf = null;
+        });
+      }, { passive: true });
+
+      window.addEventListener('resize', updateState);
+      updateState();
+    }
+
+    // ---- Subtle parallax on the hero visual ----
+    const heroVisual = document.querySelector('.hero-visual-wrap');
+    if (heroVisual && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      let raf = null;
+      window.addEventListener('scroll', () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          const y = window.scrollY;
+          if (y < 1000) {
+            heroVisual.style.transform = `translateY(${y * -0.06}px)`;
+          }
+          raf = null;
+        });
+      }, { passive: true });
+    }
   </script>
 </body>
 </html>
